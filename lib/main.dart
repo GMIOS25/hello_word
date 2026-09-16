@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+
 import 'exercises/bai_10.dart';
 import 'exercises/bai_11.dart';
 import 'exercises/bai_12.dart';
 import 'exercises/bai_13.dart';
+import 'exercises/bai_14.dart';
 
 void main() {
   runApp(const MyApp());
@@ -76,6 +78,13 @@ class ExerciseMenuScreen extends StatelessWidget {
       icon: Icons.emoji_emotions_outlined,
       page: BaiTap13(),
     ),
+    ExerciseInfo(
+      number: 14,
+      title: 'Bài tập 14: Hiển thị ảnh',
+      description: 'Hiển thị ảnh từ assets folder',
+      icon: Icons.image,
+      page: BaiTap14(),
+    ),
   ];
 
   @override
@@ -107,7 +116,9 @@ class ExerciseMenuScreen extends StatelessWidget {
               ),
               leading: CircleAvatar(
                 backgroundColor: Theme.of(context).colorScheme.primaryContainer,
-                foregroundColor: Theme.of(context).colorScheme.onPrimaryContainer,
+                foregroundColor: Theme.of(context)
+                    .colorScheme
+                    .onPrimaryContainer,
                 child: Text(
                   '${item.number}',
                   style: const TextStyle(fontWeight: FontWeight.bold),
