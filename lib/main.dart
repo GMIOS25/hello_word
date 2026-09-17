@@ -5,6 +5,9 @@ import 'exercises/bai_11.dart';
 import 'exercises/bai_12.dart';
 import 'exercises/bai_13.dart';
 import 'exercises/bai_14.dart';
+import 'exercises/bai_15.dart';
+import 'exercises/bai_16.dart';
+import 'exercises/bai_17.dart';
 
 void main() {
   runApp(const MyApp());
@@ -84,6 +87,27 @@ class ExerciseMenuScreen extends StatelessWidget {
       description: 'Hiển thị ảnh từ assets folder',
       icon: Icons.image,
       page: BaiTap14(),
+    ),
+    ExerciseInfo(
+      number: 15,
+      title: 'Bài tập 15: Hiển thị ảnh từ Internet',
+      description: 'Sử dụng Image.network tải ảnh từ URL',
+      icon: Icons.wifi,
+      page: BaiTap15(),
+    ),
+    ExerciseInfo(
+      number: 16,
+      title: 'Bài tập 16: Hiển thị nút (ElevatedButton)',
+      description: 'Bấm nút hiển thị SnackBar và in console',
+      icon: Icons.smart_button,
+      page: BaiTap16(),
+    ),
+    ExerciseInfo(
+      number: 17,
+      title: 'Bài tập 17: Bộ khung với Scaffold',
+      description: 'AppBar, Drawer, Body, FAB và BottomNavigationBar',
+      icon: Icons.dashboard_customize_outlined,
+      page: BaiTap17(),
     ),
   ];
 
