@@ -8,6 +8,7 @@ import 'exercises/bai_14.dart';
 import 'exercises/bai_15.dart';
 import 'exercises/bai_16.dart';
 import 'exercises/bai_17.dart';
+import 'exercises/lesson03_bai01.dart';
 
 void main() {
   runApp(const MyApp());
@@ -19,7 +20,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Lesson 01',
+      title: 'Flutter Exercises',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(
@@ -52,7 +53,7 @@ class ExerciseInfo {
 class ExerciseMenuScreen extends StatelessWidget {
   const ExerciseMenuScreen({super.key});
 
-  static const List<ExerciseInfo> exercises = [
+  static const List<ExerciseInfo> exercisesLesson01 = [
     ExerciseInfo(
       number: 10,
       title: 'Bài tập 10: Áp dụng kiểu cho Text',
@@ -111,62 +112,91 @@ class ExerciseMenuScreen extends StatelessWidget {
     ),
   ];
 
+  static const List<ExerciseInfo> exercisesLesson03 = [
+    ExerciseInfo(
+      number: 1,
+      title: 'Bài tập 1: Vẽ widget tree (Mục 2.2)',
+      description: 'Cụm 3 nút CALL, ROUTE, SHARE & Sơ đồ Widget tree',
+      icon: Icons.account_tree_outlined,
+      page: Lesson03BaiTap01(),
+    ),
+  ];
+
+  Widget _buildExerciseList(BuildContext context, List<ExerciseInfo> list) {
+    return ListView.separated(
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+      itemCount: list.length,
+      separatorBuilder: (context, index) => const SizedBox(height: 8),
+      itemBuilder: (context, index) {
+        final item = list[index];
+        return Card(
+          elevation: 1.5,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(12),
+          ),
+          child: ListTile(
+            contentPadding: const EdgeInsets.symmetric(
+              horizontal: 16,
+              vertical: 8,
+            ),
+            leading: CircleAvatar(
+              backgroundColor: Theme.of(context).colorScheme.primaryContainer,
+              foregroundColor:
+                  Theme.of(context).colorScheme.onPrimaryContainer,
+              child: Text(
+                '${item.number}',
+                style: const TextStyle(fontWeight: FontWeight.bold),
+              ),
+            ),
+            title: Text(
+              item.title,
+              style: const TextStyle(fontWeight: FontWeight.w600),
+            ),
+            subtitle: Padding(
+              padding: const EdgeInsets.only(top: 4.0),
+              child: Text(item.description),
+            ),
+            trailing: const Icon(Icons.chevron_right),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => item.page),
+              );
+            },
+          ),
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text(
-          'Flutter Lesson 01 - Danh Sách Bài Tập',
-          style: TextStyle(fontWeight: FontWeight.bold),
+    return DefaultTabController(
+      length: 2,
+      initialIndex: 1, // Mặc định mở tab Lesson 03 để người dùng xem ngay bài vừa làm
+      child: Scaffold(
+        appBar: AppBar(
+          title: const Text(
+            'Flutter - Danh Sách Bài Tập',
+            style: TextStyle(fontWeight: FontWeight.bold),
+          ),
+          centerTitle: true,
+          backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+          bottom: const TabBar(
+            tabs: [
+              Tab(text: 'Lesson 01'),
+              Tab(text: 'Lesson 03 (Layouts)'),
+            ],
+          ),
         ),
-        centerTitle: true,
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-      ),
-      body: ListView.separated(
-        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-        itemCount: exercises.length,
-        separatorBuilder: (context, index) => const SizedBox(height: 8),
-        itemBuilder: (context, index) {
-          final item = exercises[index];
-          return Card(
-            elevation: 1.5,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(12),
-            ),
-            child: ListTile(
-              contentPadding: const EdgeInsets.symmetric(
-                horizontal: 16,
-                vertical: 8,
-              ),
-              leading: CircleAvatar(
-                backgroundColor: Theme.of(context).colorScheme.primaryContainer,
-                foregroundColor: Theme.of(context)
-                    .colorScheme
-                    .onPrimaryContainer,
-                child: Text(
-                  '${item.number}',
-                  style: const TextStyle(fontWeight: FontWeight.bold),
-                ),
-              ),
-              title: Text(
-                item.title,
-                style: const TextStyle(fontWeight: FontWeight.w600),
-              ),
-              subtitle: Padding(
-                padding: const EdgeInsets.only(top: 4.0),
-                child: Text(item.description),
-              ),
-              trailing: const Icon(Icons.chevron_right),
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => item.page),
-                );
-              },
-            ),
-          );
-        },
+        body: TabBarView(
+          children: [
+            _buildExerciseList(context, exercisesLesson01),
+            _buildExerciseList(context, exercisesLesson03),
+          ],
+        ),
       ),
     );
   }
 }
+
