@@ -18,4 +18,6 @@ dev_dependencies:
 flutter:
   uses-material-design: true
   assets:
+    - assets/images/
     - assets/images/cong_an_danh_dan.jpg
+    - assets/images/lake.jpg
