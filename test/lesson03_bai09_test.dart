@@ -16,7 +16,24 @@ void main() {
     expect(find.text('ROUTE'), findsOneWidget);
     expect(find.text('SHARE'), findsOneWidget);
 
-    // Verify FavoriteWidget initial count
+    // Verify FavoriteWidget initial count and icon
     expect(find.text('41'), findsOneWidget);
+    expect(find.byIcon(Icons.star), findsOneWidget);
+
+    // Tap to unfavorite
+    await tester.tap(find.byType(IconButton));
+    await tester.pump();
+
+    // Verify count decremented and star_border icon shown
+    expect(find.text('40'), findsOneWidget);
+    expect(find.byIcon(Icons.star_border), findsOneWidget);
+
+    // Tap again to favorite
+    await tester.tap(find.byType(IconButton));
+    await tester.pump();
+
+    // Verify count incremented back to 41 and star icon shown
+    expect(find.text('41'), findsOneWidget);
+    expect(find.byIcon(Icons.star), findsOneWidget);
   });
 }

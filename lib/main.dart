@@ -1,13 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'exercises/bai_10.dart';
-import 'exercises/bai_11.dart';
-import 'exercises/bai_12.dart';
-import 'exercises/bai_13.dart';
-import 'exercises/bai_14.dart';
-import 'exercises/bai_15.dart';
-import 'exercises/bai_16.dart';
-import 'exercises/bai_17.dart';
 import 'exercises/lesson03_bai01.dart';
 import 'exercises/lesson03_bai09.dart';
 import 'exercises/lession04_bai01.dart';
@@ -15,6 +7,8 @@ import 'exercises/lesson04_bai02.dart';
 import 'exercises/lesson04_bai03.dart';
 import 'exercises/lesson04_bai04.dart';
 import 'exercises/lesson04_bai05.dart';
+import 'exercises/lesson05_bai02A.dart';
+import 'exercises/lesson05_bai02B.dart';
 
 void main() {
   runApp(const MyApp());
@@ -59,64 +53,6 @@ class ExerciseInfo {
 class ExerciseMenuScreen extends StatelessWidget {
   const ExerciseMenuScreen({super.key});
 
-  static const List<ExerciseInfo> exercisesLesson01 = [
-    ExerciseInfo(
-      number: 10,
-      title: 'Bài tập 10: Áp dụng kiểu cho Text',
-      description: 'Cỡ chữ, in đậm, màu chữ đỏ, màu nền vàng',
-      icon: Icons.text_fields,
-      page: BaiTap10(),
-    ),
-    ExerciseInfo(
-      number: 11,
-      title: 'Bài tập 11: Container hình chữ nhật',
-      description: 'Kích thước 250x100, bo góc 16px, viền đỏ 3px',
-      icon: Icons.crop_landscape,
-      page: BaiTap11(),
-    ),
-    ExerciseInfo(
-      number: 12,
-      title: 'Bài tập 12: Container hình tròn',
-      description: 'Kích thước 200x200, BoxShape.circle, chữ ở giữa',
-      icon: Icons.circle_outlined,
-      page: BaiTap12(),
-    ),
-    ExerciseInfo(
-      number: 13,
-      title: 'Bài tập 13: Hiển thị Icon',
-      description: 'Hiển thị 1 icon yêu thích và 5 icon theo chiều ngang (Row)',
-      icon: Icons.emoji_emotions_outlined,
-      page: BaiTap13(),
-    ),
-    ExerciseInfo(
-      number: 14,
-      title: 'Bài tập 14: Hiển thị ảnh',
-      description: 'Hiển thị ảnh từ assets folder',
-      icon: Icons.image,
-      page: BaiTap14(),
-    ),
-    ExerciseInfo(
-      number: 15,
-      title: 'Bài tập 15: Hiển thị ảnh từ Internet',
-      description: 'Sử dụng Image.network tải ảnh từ URL',
-      icon: Icons.wifi,
-      page: BaiTap15(),
-    ),
-    ExerciseInfo(
-      number: 16,
-      title: 'Bài tập 16: Hiển thị nút (ElevatedButton)',
-      description: 'Bấm nút hiển thị SnackBar và in console',
-      icon: Icons.smart_button,
-      page: BaiTap16(),
-    ),
-    ExerciseInfo(
-      number: 17,
-      title: 'Bài tập 17: Bộ khung với Scaffold',
-      description: 'AppBar, Drawer, Body, FAB và BottomNavigationBar',
-      icon: Icons.dashboard_customize_outlined,
-      page: BaiTap17(),
-    ),
-  ];
 
   static const List<ExerciseInfo> exercisesLesson03 = [
     ExerciseInfo(
@@ -173,6 +109,23 @@ class ExerciseMenuScreen extends StatelessWidget {
     ),
   ];
 
+  static const List<ExerciseInfo> exercisesLesson05 = [
+    ExerciseInfo(
+      number: 2,
+      title: 'Bài tập 2A: Widget tự quản lý state',
+      description: 'TapboxA - Quản lý state bên trong chính widget với setState()',
+      icon: Icons.touch_app_outlined,
+      page: Lesson05Bai02A(),
+    ),
+    ExerciseInfo(
+      number: 2,
+      title: 'Bài tập 2B: Parent quản lý state',
+      description: 'TapboxB - ParentWidget quản lý state và truyền callback qua onChanged',
+      icon: Icons.swap_horiz_outlined,
+      page: Lesson05Bai02B(),
+    ),
+  ];
+
   Widget _buildExerciseList(BuildContext context, List<ExerciseInfo> list) {
     return ListView.separated(
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
@@ -224,7 +177,7 @@ class ExerciseMenuScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return DefaultTabController(
       length: 3,
-      initialIndex: 2, // Mặc định mở tab Lesson 04 để xem ngay bài vừa làm
+      initialIndex: 2, // Mặc định mở tab Lesson 05 để xem ngay bài vừa làm
       child: Scaffold(
         appBar: AppBar(
           title: const Text(
@@ -235,21 +188,22 @@ class ExerciseMenuScreen extends StatelessWidget {
           backgroundColor: Theme.of(context).colorScheme.inversePrimary,
           bottom: const TabBar(
             tabs: [
-              Tab(text: 'Lesson 01'),
               Tab(text: 'Lesson 03'),
               Tab(text: 'Lesson 04'),
+              Tab(text: 'Lesson 05'),
             ],
           ),
         ),
         body: TabBarView(
           children: [
-            _buildExerciseList(context, exercisesLesson01),
             _buildExerciseList(context, exercisesLesson03),
             _buildExerciseList(context, exercisesLesson04),
+            _buildExerciseList(context, exercisesLesson05),
           ],
         ),
       ),
     );
   }
 }
+
 

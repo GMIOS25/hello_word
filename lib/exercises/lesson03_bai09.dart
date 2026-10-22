@@ -22,16 +22,11 @@ class Lesson03BaiTap09 extends StatelessWidget {
   Widget build(BuildContext context) {
     const String appTitle = 'Flutter layout demo';
     return Scaffold(
-      appBar: AppBar(
-        title: const Text(appTitle),
-        centerTitle: true,
-      ),
+      appBar: AppBar(title: const Text(appTitle), centerTitle: true),
       body: const SingleChildScrollView(
         child: Column(
           children: [
-            ImageSection(
-              image: 'assets/images/lake.jpg',
-            ),
+            ImageSection(image: 'assets/images/lake.jpg'),
             TitleSection(
               name: 'Oeschinen Lake Campground',
               location: 'Kandersteg, Switzerland',
@@ -55,11 +50,7 @@ class Lesson03BaiTap09 extends StatelessWidget {
 }
 
 class TitleSection extends StatelessWidget {
-  const TitleSection({
-    super.key,
-    required this.name,
-    required this.location,
-  });
+  const TitleSection({super.key, required this.name, required this.location});
 
   final String name;
   final String location;
@@ -80,28 +71,63 @@ class TitleSection extends StatelessWidget {
                   padding: const EdgeInsets.only(bottom: 8),
                   child: Text(
                     name,
-                    style: const TextStyle(
-                      fontWeight: FontWeight.bold,
-                    ),
+                    style: const TextStyle(fontWeight: FontWeight.bold),
                   ),
                 ),
-                Text(
-                  location,
-                  style: TextStyle(
-                    color: Colors.grey[500],
-                  ),
-                ),
+                Text(location, style: TextStyle(color: Colors.grey[500])),
               ],
             ),
           ),
           /*3*/
-          Icon(
-            Icons.star,
-            color: Colors.red[500],
-          ),
-          const Text('41'),
+          const FavoriteWidget(),
         ],
       ),
+    );
+  }
+}
+
+class FavoriteWidget extends StatefulWidget {
+  const FavoriteWidget({super.key});
+
+  @override
+  State<FavoriteWidget> createState() => _FavoriteWidgetState();
+}
+
+class _FavoriteWidgetState extends State<FavoriteWidget> {
+  bool _isFavorited = true;
+  int _favoriteCount = 1000000000000000;
+
+  void _toggleFavorite() {
+    setState(() {
+      if (_isFavorited) {
+        _favoriteCount -= 1;
+        _isFavorited = false;
+      } else {
+        _favoriteCount += 1;
+        _isFavorited = true;
+      }
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Container(
+          padding: const EdgeInsets.all(0),
+          child: IconButton(
+            padding: const EdgeInsets.all(0),
+            alignment: Alignment.centerRight,
+            icon: (_isFavorited
+                ? const Icon(Icons.star)
+                : const Icon(Icons.star_border)),
+            color: Colors.red[500],
+            onPressed: _toggleFavorite,
+          ),
+        ),
+        SizedBox(width: 18, child: SizedBox(child: Text('$_favoriteCount'))),
+      ],
     );
   }
 }
@@ -116,21 +142,9 @@ class ButtonSection extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          ButtonWithText(
-            color: color,
-            icon: Icons.call,
-            label: 'CALL',
-          ),
-          ButtonWithText(
-            color: color,
-            icon: Icons.near_me,
-            label: 'ROUTE',
-          ),
-          ButtonWithText(
-            color: color,
-            icon: Icons.share,
-            label: 'SHARE',
-          ),
+          ButtonWithText(color: color, icon: Icons.call, label: 'CALL'),
+          ButtonWithText(color: color, icon: Icons.near_me, label: 'ROUTE'),
+          ButtonWithText(color: color, icon: Icons.share, label: 'SHARE'),
         ],
       ),
     );
@@ -173,10 +187,7 @@ class ButtonWithText extends StatelessWidget {
 }
 
 class TextSection extends StatelessWidget {
-  const TextSection({
-    super.key,
-    required this.description,
-  });
+  const TextSection({super.key, required this.description});
 
   final String description;
 
@@ -184,10 +195,7 @@ class TextSection extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(32),
-      child: Text(
-        description,
-        softWrap: true,
-      ),
+      child: Text(description, softWrap: true),
     );
   }
 }
@@ -199,11 +207,6 @@ class ImageSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Image.asset(
-      image,
-      width: 600,
-      height: 240,
-      fit: BoxFit.cover,
-    );
+    return Image.asset(image, width: 600, height: 240, fit: BoxFit.cover);
   }
 }
