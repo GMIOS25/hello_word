@@ -9,6 +9,7 @@ import 'exercises/lesson04_bai04.dart';
 import 'exercises/lesson04_bai05.dart';
 import 'exercises/lesson05_bai02A.dart';
 import 'exercises/lesson05_bai02B.dart';
+import 'exercises/lesson05_bai03.dart';
 
 void main() {
   runApp(const MyApp());
@@ -123,6 +124,13 @@ class ExerciseMenuScreen extends StatelessWidget {
       description: 'TapboxB - ParentWidget quản lý state và truyền callback qua onChanged',
       icon: Icons.swap_horiz_outlined,
       page: Lesson05Bai02B(),
+    ),
+    ExerciseInfo(
+      number: 3,
+      title: 'Bài tập 3: Bật tắt bóng đèn với Checkbox',
+      description: 'Điều khiển bật/tắt đèn các phòng và cập nhật trạng thái hiển thị Icon bóng đèn',
+      icon: Icons.lightbulb_outline,
+      page: Lesson05Bai03(),
     ),
   ];
 
