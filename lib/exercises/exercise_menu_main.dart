@@ -1,16 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'exercises/lesson03_bai01.dart';
-import 'exercises/lesson03_bai09.dart';
-import 'exercises/lession04_bai01.dart';
-import 'exercises/lesson04_bai02.dart';
-import 'exercises/lesson04_bai03.dart';
-import 'exercises/lesson04_bai04.dart';
-import 'exercises/lesson04_bai05.dart';
-import 'exercises/lesson05_bai02A.dart';
-import 'exercises/lesson05_bai02B.dart';
-import 'exercises/lesson05_bai03.dart';
-
 void main() {
   runApp(const MyApp());
 }
@@ -53,7 +42,6 @@ class ExerciseInfo {
 
 class ExerciseMenuScreen extends StatelessWidget {
   const ExerciseMenuScreen({super.key});
-
 
   static const List<ExerciseInfo> exercisesLesson03 = [
     ExerciseInfo(
@@ -114,7 +102,8 @@ class ExerciseMenuScreen extends StatelessWidget {
     ExerciseInfo(
       number: 2,
       title: 'Bài tập 2A: Widget tự quản lý state',
-      description: 'TapboxA - Quản lý state bên trong chính widget với setState()',
+      description:
+          'TapboxA - Quản lý state bên trong chính widget với setState()',
       icon: Icons.touch_app_outlined,
       page: Lesson05Bai02A(),
     ),
@@ -153,8 +142,7 @@ class ExerciseMenuScreen extends StatelessWidget {
             ),
             leading: CircleAvatar(
               backgroundColor: Theme.of(context).colorScheme.primaryContainer,
-              foregroundColor:
-                  Theme.of(context).colorScheme.onPrimaryContainer,
+              foregroundColor: Theme.of(context).colorScheme.onPrimaryContainer,
               child: Text(
                 '${item.number}',
                 style: const TextStyle(fontWeight: FontWeight.bold),
@@ -213,5 +201,3 @@ class ExerciseMenuScreen extends StatelessWidget {
     );
   }
 }
-
-
